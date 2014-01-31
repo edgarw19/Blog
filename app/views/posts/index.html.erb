@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="page-header">
+  <h1>Learning<small>A Way of Life</small></h1>
+</div>
+</head>
+
+
+<table>
+	<tr>
+		<th>Title</th>
+		<th>Text</th>
+	</tr>
+
+	<% @posts.each do |post| %>
+		<tr>
+      		<td><%= post.Title %></td>
+      		<td><%= post.Post %></td>
+      		<td><%= link_to 'Show', post %></td>
+    		<td><%= link_to 'Edit', edit_post_path(post) %></td>
+    		<td><%= link_to 'Destroy', post_path(post),
+                    method: :delete, data: { confirm: 'Are you sure?'} %></td>
+    	</tr>
+  <% end %>
+</table>
+<%= link_to "My Blog", controller: "posts" %>
+<%= link_to 'New Post', new_post_path %>
