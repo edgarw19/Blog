@@ -1,7 +1,7 @@
 Blog::Application.routes.draw do
   match '/sign_up', to: 'users#new', via: 'get'
   match "/log_in", to: "sessions#new", via: 'get'
-  match "/log_out", to: "sessions#destroy", via: 'delete'
+  match "/log_out", to: "sessions#destroy", via: 'get'
   match "/about" => 'welcome#about'
 #  get "sign_up" => "users#new", :as => "sign_up"
 
