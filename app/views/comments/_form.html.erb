@@ -1,13 +1,20 @@
+<div class="container">
+	<% if signed_in? %>
 <%= form_for([@post, @post.comments.build]) do |f| %>
+
 	<p>
-		<%= f.label :username %>
+		<%= f.label :CodeName %>
 		<%= f.text_field :commenter %>
 	</p>
 	<p>
 		<%= f.label :comment %>
-		<%= f.text_area :body %>
+		<%= f.text_area :body, :cols => "50", :rows => "30"%>
 	</p>
 	<p>
-		<%= f.submit "Submit Comment"%>
+		<%= f.submit "Submit Comment" %>
 	</p>
 <% end %>
+<% else %>
+<p> <em>You must be signed in to comment</em> </p>
+<% end %>
+</div>

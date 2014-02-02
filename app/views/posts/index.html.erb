@@ -3,18 +3,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-
+<%= will_paginate %>
 <% @posts.each do |post| %>
-  <div class="container", "relative">
-    <div class="row-fluid">
-      <h1><%= post.Title %></h1>
-        <p><%= post.Post %></p>
-        <p><%= link_to 'Show', post %></p>
-        <p><%= link_to 'Edit', edit_post_path(post) %></p>
-        <p><%= link_to 'Destroy', post_path(post),
-        method: :delete, data: { confirm: 'Are you sure?'} %></p>
-    </div>
+<div class="container", "relative">
+  <div class="row-fluid">
+    <h1><%= post.Title %></h1>
+    <p>
+      <%= truncate post.Post, length: 400 %>
+    </p>
+    <p><%= link_to 'read more', post%></p>
+    <% if is_admin? %>
+    <p><%= link_to 'Show', post %></p>
+    <p><%= link_to 'Edit', edit_post_path(post) %></p>
+    <p><%= link_to 'Destroy', post_path(post),
+    method: :delete, data: { confirm: 'Are you sure?'} %></p>
+    <% else %>
+    <% end %>
+
+
+    <% end %>
+
+    <%= will_paginate %>
+    <% if is_admin? %>
+    <%= link_to 'New Post', new_post_path %>
+    <% end %>
   </div>
-  <% end %>
-<%= link_to "My Blog", controller: "posts" %>
-<%= link_to 'New Post', new_post_path %>
+</div>

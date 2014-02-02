@@ -16,11 +16,12 @@
 		<% end %>
 
 	</em></h5>
-
+	<% if is_admin? %>
 	<p>
 		<%= link_to 'Destroy Comment', [comment.post, comment],
 		method: :delete, data: {confirm: 'Are you sure?'} %>
 	</p>
+	<% end %>
 
 </div>
 </div>

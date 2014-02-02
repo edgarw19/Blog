@@ -15,36 +15,36 @@
 						<ul class="nav pull-right">
 							<li class="<%= 'active' if current_page?(root_path) %>">
 								<%= link_to "Home", root_path %></li>
-							<li class="<%= 'active' if current_page?(posts_path) %>">
+								<li class="<%= 'active' if current_page?(posts_path) %>">
 									<%= link_to "Posts", posts_path %></li>
-							<% if current_user %>
-							<li> Logged in as <%= current_user.email%>
-										<%= link_to "Log out", log_out_path%></li>
-							<% else %>
-							<li class="<%= 'active' if current_page?(posts_path) %>">
-											<%= link_to "Profile", log_out_path %></li>
-							<li class="<%= 'active' if current_page?(sign_up_path) %>"><%= link_to "Sign Up", sign_up_path %></li>
-							<li class="<%= 'active' if current_page?(log_in_path) %>"><%= link_to "Sign In", log_in_path %></li>
-							<% end %>
+									<% if signed_in? %>
+									<li class="<%= 'active' if current_page?(edit_user_path(current_user)) %>"><%= link_to "Profile", current_user %></li>
+									<li><%= link_to "Sign out", log_out_path, method: "delete" %></li>
+									<% else %>
+									<li><%= link_to "Sign in", log_in_path %></li>
 
-										</ul>
-									</div>
-								</div>
+									<% end %>
+									<li><%= link_to "Sign up", sign_up_path %></li>
+									<li><%= link_to "About", about_path %></li>
+								</ul>
 							</div>
-						</nav>
-
-
-
-					</head>
-					<div class='wrapper'>
-						<body>
-							<%= yield %>
-
-						</body>
+						</div>
 					</div>
+				</nav>
+				<div class="container">
+					<% flash.each do |key, value| %>
+					<div class="alert alert-<%= key %>"><%= value %></div>
+					<% end %>
 				</div>
-				<div class='footer'>Powered by Rails <img src="http://upload.wikimedia.org/wikipedia/en/thumb/e/e9/Ruby_on_Rails.svg/150px-Ruby_on_Rails.svg.png" HEIGHT="20" WIDTH="20">
-					<%= debug (params) %>
-				</div>
-				</html>
+
+
+			</head>
+			<div class='wrapper'>
+				<body>
+					<%= yield %>
+
+				</body>
+			</div>
+		</div>
+		</html>
 

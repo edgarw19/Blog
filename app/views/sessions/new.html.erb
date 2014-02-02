@@ -1,14 +1,21 @@
-<h1>Log in</h1>
-<%= form_tag sessions_path do %>
-<p>
-	<%= label_tag :username %>
-	<% text_field_tag :username, params[:username] %>
-</p>
-<p>
-	<%= label_tag :password %>
-	<%= text_field_tag :password %>
-</p>
-<p class="button"><%= submit_tag %></p>
-<% end %>
+<%= flash[:error] %>
+
+<div class="row">
+	<div class="span6 offset3">
+		<h1>Log in</h1>
+		<%= form_tag sessions_path do %>
+		<p>
+			<%= label_tag :email %>
+			<%= text_field_tag :email, params[:email] %>
+		</p>
+		<p>
+			<%= label_tag :password %>
+			<%= password_field_tag :password %>
+		</p>
+		<%= submit_tag "Sign in", class: "btn btn-large btn-primary" %>
+		<% end %>
+		<p>New user? <%= link_to "Sign up now!", sign_up_path %></p>
+	</div>
+</div>
 
 
