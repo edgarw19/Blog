@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :username
   
   attr_accessor :password
-  
+  before_save :create_remember_token
   before_save :encrypt_password
   before_save { self.email = email.downcase}
   
