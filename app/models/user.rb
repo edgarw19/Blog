@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :username, :remember_token
   
   attr_accessor :password
-  before_save :create_remember_token
+  after_save :create_remember_token
   before_save :encrypt_password
   before_save { self.email = email.downcase}
   
@@ -31,6 +31,6 @@ class User < ActiveRecord::Base
   private
 
     def create_remember_token
-      self.remember_token = SecureRandom.urlsafe_base64
+      self.remember_token = (:remember_token, SecureRandom.urlsafe_base64)
     end
 end
