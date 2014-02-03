@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :password_confirmation, :username
+  attr_accessible :email, :password, :password_confirmation, :username, :remember_token
   
   attr_accessor :password
   before_save :create_remember_token
